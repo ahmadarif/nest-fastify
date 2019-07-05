@@ -1,6 +1,9 @@
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a> <a href="https://www.fastify.io/" target="blank"><img src="https://github.com/fastify/graphics/blob/master/fastify-landscape.svg" width="320" alt="Fastify Logo" /></a>
 </p>
+<p align="center">
+  <a href="https://socket.io/" target="blank"><img src="https://cdn.worldvectorlogo.com/logos/socket-io.svg" width="120" alt="Socket.io Logo" /></a>
+</p>
 
 ## Description
 
