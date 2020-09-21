@@ -1,10 +1,12 @@
-import { GetContext } from './main.context';
-import { Env } from './helpers/environment.helper';
-import { RedisIoAdapter } from './websockets/redis-io.adapter';
+import { Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import * as multer from 'fastify-multer';
+import { ApplicationContext } from './app.context';
 
 async function bootstrap() {
-  const app = await GetContext();
-  app.useWebSocketAdapter(new RedisIoAdapter(app));
-  await app.listen(Env.getNumber('PORT'));
+  const app = await ApplicationContext();
+  app.register(multer.contentParser);
+  await app.listen(app.get(ConfigService).get('APP_PORT'));
+  Logger.log(`Running on port ${app.get(ConfigService).get('APP_PORT')}`, 'NestApplication');
 }
 bootstrap();

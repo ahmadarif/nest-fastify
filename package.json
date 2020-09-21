@@ -1,55 +1,45 @@
 {
-  "name": "nest-fastify",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "name": "nestjs-fastify-starter",
+  "private": true,
+  "version": "1.0.0",
+  "description": "NestJS + Fastify",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "prebuild": "rimraf dist",
+    "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\"",
-    "start": "ts-node -r tsconfig-paths/register src/main.ts",
-    "serve": "concurrently --handle-input \"wait-on dist/main.js && nodemon\" \"tsc -w -p tsconfig.build.json\" ",
-    "debug": "nodemon --config nodemon-debug.json",
-    "prestart:prod": "rimraf dist && npm run build",
-    "start:prod": "node dist/main.js",
-    "lint": "tslint -p tsconfig.json -c tslint.json",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs}/**/*.ts\" --fix"
   },
   "dependencies": {
-    "@nestjs/common": "^6.0.0",
-    "@nestjs/core": "^6.0.0",
-    "@nestjs/platform-fastify": "^6.4.1",
-    "@nestjs/platform-socket.io": "^6.4.1",
-    "@nestjs/websockets": "^6.4.1",
-    "dotenv": "^8.0.0",
-    "reflect-metadata": "^0.1.12",
-    "rimraf": "^2.6.2",
-    "rxjs": "^6.3.3",
-    "socket.io-redis": "^5.2.0"
+    "@nestjs/common": "^7.1.1",
+    "@nestjs/config": "^0.5.0",
+    "@nestjs/core": "^7.1.1",
+    "@nestjs/platform-fastify": "^7.1.1",
+    "@webundsoehne/nest-fastify-file-upload": "^1.0.0",
+    "fastify-multipart": "^3.2.0",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^6.5.5"
   },
   "devDependencies": {
-    "@nestjs/testing": "^6.0.0",
-    "@types/dotenv": "^6.1.1",
-    "@types/jest": "^23.3.13",
-    "@types/node": "^10.12.18",
-    "@types/socket.io": "^2.1.2",
-    "@types/socket.io-redis": "^1.0.25",
-    "@types/supertest": "^2.0.7",
-    "concurrently": "^4.1.0",
-    "jest": "^23.6.0",
-    "nodemon": "^1.18.9",
-    "prettier": "^1.15.3",
-    "supertest": "^3.4.1",
-    "ts-jest": "24.0.2",
-    "ts-node": "8.1.0",
-    "tsconfig-paths": "3.8.0",
-    "tslint": "5.16.0",
-    "typescript": "3.4.3",
-    "wait-on": "^3.2.0"
+    "@nestjs/cli": "^7.2.0",
+    "@nestjs/schematics": "^7.0.0",
+    "@types/node": "^14.0.6",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.0",
+    "ts-loader": "^7.0.5",
+    "ts-node": "^8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.3"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -58,11 +48,12 @@
       "ts"
     ],
     "rootDir": "src",
-    "testRegex": ".spec.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage"
   }
 }
